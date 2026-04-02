@@ -1,0 +1,30 @@
+name: Lab2 EmployePensionPlan Workflow
+
+on:
+  push:
+    branches:
+      - lab2/employepensionplan
+  pull_request:
+    branches:
+      - lab2/employepensionplan
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+          
+      - name: Grant execute permission for gradlew
+        run: chmod +x lab2/EmployePensionPlan/gradlew
+        
+      - name: Build with Gradle
+        working-directory: lab2/EmployePensionPlan
+        run: ./gradlew build
