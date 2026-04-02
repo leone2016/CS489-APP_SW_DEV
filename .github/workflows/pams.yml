@@ -25,10 +25,10 @@ jobs:
           cache: gradle
           
       - name: Grant execute permission for gradlew
-        run: chmod +x lab2/PAMS/gradlew
+        run: chmod +x LAB2/PAMS/gradlew
         
       - name: Build with Gradle
-        working-directory: lab2/PAMS
+        working-directory: LAB2/PAMS
         run: ./gradlew bootJar
         
       - name: Create Release
@@ -37,7 +37,7 @@ jobs:
         with:
           tag_name: pams-v${{ github.run_number }}
           name: PAMS Release v${{ github.run_number }}
-          files: lab2/PAMS/build/libs/PAMS-0.0.1-SNAPSHOT.jar
+          files: LAB2/PAMS/build/libs/PAMS-0.0.1-SNAPSHOT.jar
           draft: false
           prerelease: false
         env:

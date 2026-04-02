@@ -23,8 +23,8 @@ jobs:
           cache: gradle
           
       - name: Grant execute permission for gradlew
-        run: chmod +x lab2/EmployePensionPlan/gradlew
+        run: chmod +x LAB2/EmployePensionPlan/gradlew
         
       - name: Build with Gradle
-        working-directory: lab2/EmployePensionPlan
+        working-directory: LAB2/EmployePensionPlan
         run: ./gradlew build
