@@ -1,0 +1,120 @@
+﻿> Task :compileJava
+> Task :processResources UP-TO-DATE
+> Task :classes
+> Task :resolveMainClassName
+
+> Task :bootRun
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.5)
+
+2026-04-01T20:45:56.601-05:00  INFO 12704 --- [EmployePensionPlan] [  restartedMain] e.m.c.e.EmployePensionPlanApplication    : Starting EmployePensionPlanApplication using Java 17.0.12 with PID 12704 (C:\Users\USUARIO\Documents\CS489-ASD-2026\LAB2\EmployePensionPlan\build\classes\java\main started by USUARIO in C:\Users\USUARIO\Documents\CS489-ASD-2026\LAB2\EmployePensionPlan)
+2026-04-01T20:45:56.605-05:00  INFO 12704 --- [EmployePensionPlan] [  restartedMain] e.m.c.e.EmployePensionPlanApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-04-01T20:45:56.652-05:00  INFO 12704 --- [EmployePensionPlan] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-04-01T20:45:57.147-05:00  INFO 12704 --- [EmployePensionPlan] [  restartedMain] e.m.c.e.EmployePensionPlanApplication    : Started EmployePensionPlanApplication in 1.001 seconds (process running for 1.487)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. All Employees List (Sorted by Salary DESC, Last Name ASC):
+[ {
+  "employeeId" : 3,
+  "firstName" : "Carly",
+  "lastName" : "Jones",
+  "employmentDate" : "2024-05-16",
+  "yearlySalary" : 842000.75,
+  "pensionPlan" : {
+    "planReferenceNumber" : "SM2307",
+    "enrollmentDate" : "2025-05-17",
+    "monthlyContribution" : 1555.5
+  }
+}, {
+  "employeeId" : 2,
+  "firstName" : "Benard",
+  "lastName" : "Shaw",
+  "employmentDate" : "2025-02-03",
+  "yearlySalary" : 197750.0,
+  "pensionPlan" : {
+    "planReferenceNumber" : "EX0089",
+    "enrollmentDate" : "2026-02-03",
+    "monthlyContribution" : 450.0
+  }
+}, {
+  "employeeId" : 5,
+  "firstName" : "Anna",
+  "lastName" : "Wilford",
+  "employmentDate" : "2025-09-15",
+  "yearlySalary" : 185750.0,
+  "pensionPlan" : null
+}, {
+  "employeeId" : 4,
+  "firstName" : "Wesley",
+  "lastName" : "Schneider",
+  "employmentDate" : "2025-04-30",
+  "yearlySalary" : 174500.0,
+  "pensionPlan" : null
+}, {
+  "employeeId" : 1,
+  "firstName" : "Daniel",
+  "lastName" : "Agar",
+  "employmentDate" : "2025-08-17",
+  "yearlySalary" : 105945.5,
+  "pensionPlan" : null
+}, {
+  "employeeId" : 6,
+  "firstName" : "Yosef",
+  "lastName" : "Tesfalem",
+  "employmentDate" : "2025-07-31",
+  "yearlySalary" : 100000.0,
+  "pensionPlan" : null
+}, {
+  "employeeId" : 7,
+  "firstName" : "Johnny",
+  "lastName" : "Edwards",
+  "employmentDate" : "2025-07-09",
+  "yearlySalary" : 95500.0,
+  "pensionPlan" : null
+} ]
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. Current Quarterly Enrollees Report (Q2 2026):
+[ {
+  "employeeId" : 4,
+  "firstName" : "Wesley",
+  "lastName" : "Schneider",
+  "employmentDate" : "2025-04-30",
+  "yearlySalary" : 174500.0,
+  "pensionPlan" : null
+} ]
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3. Next Quarterly Upcoming Enrollees Report (Q3 2026):
+[ {
+  "employeeId" : 5,
+  "firstName" : "Anna",
+  "lastName" : "Wilford",
+  "employmentDate" : "2025-09-15",
+  "yearlySalary" : 185750.0,
+  "pensionPlan" : null
+}, {
+  "employeeId" : 1,
+  "firstName" : "Daniel",
+  "lastName" : "Agar",
+  "employmentDate" : "2025-08-17",
+  "yearlySalary" : 105945.5,
+  "pensionPlan" : null
+}, {
+  "employeeId" : 6,
+  "firstName" : "Yosef",
+  "lastName" : "Tesfalem",
+  "employmentDate" : "2025-07-31",
+  "yearlySalary" : 100000.0,
+  "pensionPlan" : null
+} ]
+
+BUILD SUCCESSFUL in 4s
+4 actionable tasks: 3 executed, 1 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.1/userguide/configuration_cache_enabling.html
