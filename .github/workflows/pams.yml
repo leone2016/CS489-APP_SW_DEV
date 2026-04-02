@@ -29,7 +29,7 @@ jobs:
         
       - name: Build with Gradle
         working-directory: LAB2/PAMS
-        run: ./gradlew build
+        run: ./gradlew assemble
         
       - name: Create Release
         if: github.event_name == 'push'
