@@ -1,0 +1,12 @@
+.idea
+.gradle
+build
+*.jar
+*.zip
+*.class
+*.log
+*.bin
+*.lock
+*.properties
+*.MF
+*.md
