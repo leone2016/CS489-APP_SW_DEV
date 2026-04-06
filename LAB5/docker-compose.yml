@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: mi_postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: lab5
+      POSTGRES_PASSWORD: lab5
+      POSTGRES_DB: myADSDentalSurgeryDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres_data:/var/lib/postgresql
+
+
+# ON CONSOLE TERMINAL psql -U lab5 -d myADSDentalSurgeryDB
