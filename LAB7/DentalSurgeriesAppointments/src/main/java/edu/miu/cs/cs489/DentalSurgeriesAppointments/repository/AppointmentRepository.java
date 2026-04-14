@@ -1,0 +1,13 @@
+package edu.miu.cs.cs489.DentalSurgeriesAppointments.repository;
+
+import edu.miu.cs.cs489.DentalSurgeriesAppointments.model.Appointment;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
+    List<Appointment> findByDentistDentistId(Long dentistId);
+    List<Appointment> findBySurgerySurgeryId(Long surgeryId);
+    List<Appointment> findByPatientPatientIdAndAppointmentDate(Long patientId, LocalDate date);
+}
