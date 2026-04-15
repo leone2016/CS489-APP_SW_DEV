@@ -1,8 +1,11 @@
-# Instructions
+# DOCUMENTATION for Claude code only
 
-For this Lab Assignment 7a, you are required to create a **Spring Boot**, Spring Web MVC-based Web application project and implement a RESTful Web API solution, for the ADS Dental Surgeries Appointments management system.
+# DOC
+This is a Spring Boot Web API solution for the ADS Dental Surgeries Appointments management system.
 
-In your solution, you are required to implement the following RESTful Web API endpoint URIs:
+
+
+this solution, is implemented the following RESTful Web API endpoint URIs:
 
 1. HTTP GET request: http://localhost:8080/adsweb/api/v1/patients - Displays the list of all Patients, including their primaryAddresses, sorted in ascending order by their lastName, in JSON format.
 
@@ -17,8 +20,21 @@ In your solution, you are required to implement the following RESTful Web API en
 6. http://localhost:8080/adsweb/api/v1/patient/search/{searchString} - Queries all the Patient data for the patient(s) whose data matches the input searchString.
 
 7. HTTP GET request: http://localhost:8080/adsweb/api/v1/addresses - Displays the list of all Addresses, including the Patient data, sorted in ascending order by their city, in JSON format.
-
-   When complete: create a file with curls uses of API output
+21: 
+22: 8. GraphQL Web API Endpoints:
+23:    - **GraphQL Endpoint**: `http://localhost:8080/adsweb/graphql`
+24:    - **GraphiQL Interface**: `http://localhost:8080/adsweb/graphiql` (Enabled for testing)
+25: 
+26:    **Supported Queries:**
+27:    - `allPatients`: List of all patients sorted by lastName.
+28:    - `patientById(id: ID!)`: Get a patient by ID.
+29:    - `searchPatients(searchString: String!)`: Search patients by string.
+30:    - `allAddresses`: List of all addresses sorted by city.
+31: 
+32:    **Supported Mutations:**
+33:    - `registerPatient(patient: PatientInput!)`: Create a new patient.
+34:    - `updatePatient(id: ID!, patient: PatientInput!)`: Update an existing patient.
+35:    - `deletePatient(id: ID!)`: Delete a patient.
 
 
 -------------------------------------------------
@@ -72,11 +88,11 @@ All files are created. Here's a summary of what was implemented:
                                                                                                                                        
   build.gradle                                                                                                                         
                                                                                                                                        
-  Added spring-boot-starter-data-jpa, postgresql driver, and lombok.                                                                   
+  Added spring-boot-starter-data-jpa, spring-boot-starter-graphql, postgresql driver, and lombok.                                                                   
 
   application.properties                                                                                                               
                                                             
-  Configured PostgreSQL datasource (myadsdentalsurgerydb_lab6, user lab5/lab5) with ddl-auto=create.                                   
+  Configured PostgreSQL datasource and enabled GraphiQL interface.                                   
                                                             
   Model (model/)                                                                                                                       
                                                             
@@ -116,3 +132,97 @@ All files are created. Here's a summary of what was implemented:
   - EM.md — added ADDRESS, ROLE, USER entities and new relationships                                                                   
   - myADSDentalSurgeryDBScript.sql — full rewrite with addresses table, updated FK references in patients/surgeries, added
     roles/users/user_roles, and updated Query C to JOIN through addresses      
+  GraphQL Implementation
+                                                            
+  - schema.graphqls — defined types for Patient and Address, with corresponding Queries and Mutations.
+  - PatientGraphQLController — implemented @QueryMapping and @MutationMapping for Patient-related operations.
+  - AddressGraphQLController — implemented @QueryMapping for Address-related operations.
+
+----------------------------------------------------------
+
+Para probar la implementación de GraphQL que acabo de realizar, puedes seguir estos pasos. He habilitado una interfaz gráfica llamada GraphiQL que facilita mucho las pruebas.
+
+1. Iniciar la aplicación
+Asegúrate de que la aplicación esté corriendo. Si no lo está, puedes iniciarla desde tu IDE o usando la terminal:
+
+bash
+./gradlew bootRun
+2. Acceder a GraphiQL
+Abre tu navegador y ve a la siguiente dirección: http://localhost:8080/adsweb/graphiql
+
+Verás un editor interactivo donde puedes escribir tus consultas y ver los resultados en tiempo real.
+
+3. Ejecutar Consultas (Queries)
+Copia y pega estas consultas en el panel izquierdo de GraphiQL y presiona el botón "Play":
+
+A. Listar todos los pacientes con sus direcciones:
+
+graphql
+query {
+  allPatients {
+    patientId
+    firstName
+    lastName
+    email
+    address {
+      city
+      street
+    }
+  }
+}
+B. Buscar pacientes por nombre o correo:
+
+graphql
+query {
+  searchPatients(searchString: "John") {
+    firstName
+    lastName
+    email
+  }
+}
+C. Listar todas las direcciones:
+
+graphql
+query {
+  allAddresses {
+    city
+    street
+    patient {
+      lastName
+    }
+  }
+}
+4. Ejecutar Mutaciones (Cambios en los datos)
+Las mutaciones se usan para crear, actualizar o eliminar datos:
+
+A. Registrar un nuevo paciente:
+
+graphql
+mutation {
+  registerPatient(patient: {
+    firstName: "Maria",
+    lastName: "Garcia",
+    email: "maria.g@example.com",
+    contactPhone: "555-1234",
+    address: {
+      street: "Calle 123",
+      city: "Fairfield",
+      state: "IA",
+      zipCode: "52556"
+    }
+  }) {
+    patientId
+    firstName
+    address {
+      city
+    }
+  }
+}
+5. Probar con curl (Opcional)
+Si prefieres usar la terminal, puedes enviar un POST al endpoint de GraphQL:
+
+bash
+curl -X POST http://localhost:8080/adsweb/graphql \
+  -H "Content-Type: application/json" \
+  -d '{"query": "{ allPatients { firstName lastName } }"}'
+¡Con esto ya puedes verificar que todo el sistema de GraphQL está funcionando correctamente! He incluido estas instrucciones también en el walkthrough.md para que las tengas de referencia.
