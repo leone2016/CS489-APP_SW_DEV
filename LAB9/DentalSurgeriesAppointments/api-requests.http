@@ -1,0 +1,64 @@
+### ADS Dental Surgeries Appointments REST API
+
+# Base URL
+@baseUrl = http://localhost:8080/adsweb/api/v1
+
+### 1. GET All Patients (Sorted by lastName ASC)
+GET {{baseUrl}}/patients
+Accept: application/json
+
+### 2. GET Patient by ID (Valid ID)
+GET {{baseUrl}}/patients/1
+Accept: application/json
+
+### 3. GET Patient by ID (Invalid ID - Exception Handling)
+GET {{baseUrl}}/patients/999
+Accept: application/json
+
+### 4. POST Register New Patient
+POST {{baseUrl}}/patients
+Content-Type: application/json
+
+{
+  "firstName": "Diana",
+  "lastName": "Prince",
+  "contactPhone": "555-5555",
+  "email": "diana.p@amazon.com",
+  "dateOfBirth": "1988-06-15",
+  "outstandingBillBalance": 0.00,
+  "address": {
+    "street": "123 Wonder Way",
+    "city": "Themyscira",
+    "state": "Paradise Island",
+    "zipCode": "00000"
+  }
+}
+
+### 5. PUT Update Patient (Singular URI)
+PUT {{baseUrl}}/patient/1
+Content-Type: application/json
+
+{
+  "firstName": "Alice",
+  "lastName": "Williams-Smith",
+  "contactPhone": "555-8888",
+  "email": "alice.smith@email.com",
+  "dateOfBirth": "1990-05-14",
+  "outstandingBillBalance": 50.00,
+  "address": {
+    "street": "123 Elm St",
+    "city": "Austin",
+    "state": "TX",
+    "zipCode": "78701"
+  }
+}
+
+### 6. DELETE Patient (Singular URI)
+DELETE {{baseUrl}}/patient/3
+
+### 7. GET Search Patients (Singular URI)
+GET {{baseUrl}}/patient/search/Bob
+
+### 8. GET All Addresses (Sorted by city ASC)
+GET {{baseUrl}}/addresses
+Accept: application/json
