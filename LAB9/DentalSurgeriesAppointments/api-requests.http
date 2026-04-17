@@ -3,21 +3,48 @@
 # Base URL
 @baseUrl = http://localhost:8080/adsweb/api/v1
 
-### 1. GET All Patients (Sorted by lastName ASC)
+### 0. Authenticate as ADMIN
+# @name loginAdmin
+POST {{baseUrl}}/authenticate
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+### Extract token (if using VS Code REST Client)
+@token = {{loginAdmin.response.body.token}}
+
+### 0. Authenticate as JOHN (User)
+# @name loginUser
+POST {{baseUrl}}/authenticate
+Content-Type: application/json
+
+{
+  "username": "john",
+  "password": "john123"
+}
+
+### 1. [ADMIN/USER] GET All Patients (Sorted by lastName ASC)
 GET {{baseUrl}}/patients
 Accept: application/json
+Authorization: Bearer {{token}}
 
-### 2. GET Patient by ID (Valid ID)
+### 2. [ADMIN/USER] GET Patient by ID (Valid ID)
 GET {{baseUrl}}/patients/1
 Accept: application/json
+Authorization: Bearer {{token}}
 
-### 3. GET Patient by ID (Invalid ID - Exception Handling)
+### 3. [ADMIN/USER] GET Patient by ID (Invalid ID - Exception Handling)
 GET {{baseUrl}}/patients/999
 Accept: application/json
+Authorization: Bearer {{token}}
 
-### 4. POST Register New Patient
+### 4. [ADMIN] POST Register New Patient
 POST {{baseUrl}}/patients
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "firstName": "Diana",
@@ -34,9 +61,10 @@ Content-Type: application/json
   }
 }
 
-### 5. PUT Update Patient (Singular URI)
+### 5. [ADMIN] PUT Update Patient (Singular URI)
 PUT {{baseUrl}}/patient/1
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "firstName": "Alice",
@@ -53,12 +81,15 @@ Content-Type: application/json
   }
 }
 
-### 6. DELETE Patient (Singular URI)
+### 6. [ADMIN] DELETE Patient (Singular URI)
 DELETE {{baseUrl}}/patient/3
+Authorization: Bearer {{token}}
 
-### 7. GET Search Patients (Singular URI)
+### 7. [ADMIN/USER] GET Search Patients (Singular URI)
 GET {{baseUrl}}/patient/search/Bob
+Authorization: Bearer {{token}}
 
-### 8. GET All Addresses (Sorted by city ASC)
+### 8. [ADMIN/USER] GET All Addresses (Sorted by city ASC)
 GET {{baseUrl}}/addresses
 Accept: application/json
+Authorization: Bearer {{token}}
